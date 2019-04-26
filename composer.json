@@ -1,0 +1,40 @@
+{
+    "name": "nordic/email-address",
+    "description": "Immutable Email Address value object",
+    "keywords": [
+        "nordic",
+        "email",
+        "email address",
+        "value object",
+        "immutable"
+    ],
+    "homepage": "https://github.com/nordic-alliance/email-address",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Serhii Diahovchenko",
+            "email": "sergey.dyagovchenko@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php" : "~7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nordic\\EmailAddress\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NordicTest\\EmailAddress\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
