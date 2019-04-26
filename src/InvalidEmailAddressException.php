@@ -19,7 +19,7 @@ class InvalidEmailAddressException extends \InvalidArgumentException
     /**
      * @inheritDoc
      */
-    public function __construct(string $emailAddress, string $message, int $code = 0, \Throwable $previous = null)
+    public function __construct(string $emailAddress, string $message = '', int $code = 0, \Throwable $previous = null)
     {
         $this->emailAddress = $emailAddress;
         parent::__construct($message, $code, $previous);
