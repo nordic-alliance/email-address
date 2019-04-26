@@ -17,4 +17,13 @@ final class Assertion
 
         return $email;
     }
+
+    public static function notNull(EmailAddressInterface $emailAddress, string $message = ''): EmailAddressInterface
+    {
+        if ($emailAddress instanceof NullEmailAddress) {
+            throw new InvalidEmailAddressException((string)$emailAddress, $message ?: 'Null email address is not allowed');
+        }
+
+        return $emailAddress;
+    }
 }

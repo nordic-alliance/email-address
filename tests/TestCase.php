@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NordicTest\EmailAddress;
 
 use Nordic\EmailAddress\EmailAddress;
+use Nordic\EmailAddress\NullEmailAddress;
 use PHPUnit\Framework\TestCase as PHPUnitFrameworkTestCase;
 
 abstract class TestCase extends PHPUnitFrameworkTestCase
@@ -26,5 +27,10 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
     public function createInvalidEmailAddress()
     {
         return $this->createEmailAddress(self::INVALID_EMAIL);
+    }
+
+    public function createNullEmailAddress()
+    {
+        return new NullEmailAddress;
     }
 }

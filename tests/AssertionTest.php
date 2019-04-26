@@ -20,13 +20,30 @@ final class AssertionTest extends TestCase
     {
         $this->expectException(InvalidEmailAddressException::class);
 
-        $email = Assertion::email(self::INVALID_EMAIL);
+        Assertion::email(self::INVALID_EMAIL);
     }
 
     public function testAssertionEmailInvalidCustomMessage()
     {
         $this->expectExceptionMessage(self::CUSTOM_EXCEPTION_MESSAGE);
 
-        $email = Assertion::email(self::INVALID_EMAIL, self::CUSTOM_EXCEPTION_MESSAGE);
+        Assertion::email(self::INVALID_EMAIL, self::CUSTOM_EXCEPTION_MESSAGE);
+    }
+
+    // Assertion::notNull
+
+    public function testAssertionNotNullValid()
+    {
+        $emailAddress = $this->createValidEmailAddress();
+        $assertEmailAddress = Assertion::notNull($emailAddress);
+
+        $this->assertSame($assertEmailAddress, $emailAddress);
+    }
+
+    public function testAssertionNotNullInvalid()
+    {
+        $this->expectException(InvalidEmailAddressException::class);
+
+        Assertion::notNull($this->createNullEmailAddress());
     }
 }
