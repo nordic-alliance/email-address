@@ -15,6 +15,14 @@ Via Composer
 $ composer require nordic/email-address
 ```
 
+## Features
+
+ * Immutable value object
+ * No dependencies
+ * Include null email address value object (see [Null object pattern](link-null-object-pattern))
+ * Include assertion class
+ * Include factory class
+
 ## Usage
 
 ```php
@@ -178,3 +186,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-code-quality]: https://scrutinizer-ci.com/g/nordic-alliance/email-address
 [link-author]: https://github.com/DyaGa
 [link-contributors]: ../../contributors
+
+[link-null-object-pattern]: https://en.wikipedia.org/wiki/Null_object_pattern
