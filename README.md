@@ -5,6 +5,8 @@
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
+This package represents an immutable email address value object and additional utility classes.
+
 ## Install
 
 Via Composer
