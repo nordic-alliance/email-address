@@ -31,13 +31,8 @@ $emailAddress = new EmailAddress('email@example.com');
 
 ```php
 use Nordic\EmailAddress\EmailAddress;
-use Nordic\EmailAddress\InvalidEmailAddressException;
 
-try {
-    $emailAddress = new EmailAddress('email@example.com');
-} catch (InvalidEmailAddressException $e) {
-    // invalid email value detected
-}
+$emailAddress = new EmailAddress('email@example.com');
 ```
 
 ### Null value object
@@ -57,15 +52,26 @@ $emailAddress = new NullEmailAddress;
 ```php
 use Nordic\EmailAddress\InvalidEmailAddressException;
 
-try {
-    $email = 'email_example.com';
-    throw new InvalidEmailAddressException($email, sprintf('Wrong email address value `%s`', $email));
-} catch (InvalidEmailAddressException $e) {
-    var_dump($e->getMessage());
-    // string(45) "Wrong email address value `email_example.com`"
-    var_dump($e->getEmailAddress());
-    // string(17) "email_example.com"
-}
+$email = 'wrong_email';
+$e = new InvalidEmailAddressException($email, sprintf('Wrong email address value `%s`', $email));
+
+var_dump($e->getMessage()); // string(45) "Wrong email address value `wrong_email`"
+var_dump($e->getEmailAddress()); // string(17) "wrong_email"
+```
+
+### Email address factory
+
+`EmailAddressFactoryInterface` - is the base interface for email address factory.
+
+`EmailAddressFactory` - is the factory class that creates `EmailAddress` value objects.
+
+```php
+use Nordic\EmailAddress\EmailAddressFactory;
+
+$factory = new EmailAddressFactory;
+$emailAddress = $factory->createEmailAddress('email@example.com');
+$nullEmailAddress = $factory->createEmailAddress();
+$emailAddress = $factory->createEmailAddress('wrong_email'); // will throw InvalidEmailAddressException
 ```
 
 ### Assertion class
@@ -82,11 +88,8 @@ The method `Assertion::email` will fail in case if string value is not a valid e
 use Nordic\EmailAddress\Assertion;
 use Nordic\EmailAddress\InvalidEmailAddressException;
 
-try {
-    Assertion::email('email@example.com');
-} catch (InvalidEmailAddressException $e) {
-    // invalid email value detected
-}
+$email = Assertion::email('email@example.com');
+$email = Assertion::email('wrong_email'); // will throw InvalidEmailAddressException
 ```
 
 #### `Assertion::notNull`
@@ -95,13 +98,8 @@ The method `Assertion::notNull` will fail in case if email address value object 
 
 ```php
 use Nordic\EmailAddress\Assertion;
-use Nordic\EmailAddress\InvalidEmailAddressException;
 
-try {
-    Assertion::notNull($emailAddress);
-} catch (InvalidEmailAddressException $e) {
-    // $emailAddress is nullable
-}
+$emailAddress = Assertion::notNull($emailAddress);
 ```
 
 ### Email address utilities
