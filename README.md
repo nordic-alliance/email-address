@@ -23,9 +23,11 @@ $emailAddress = new EmailAddress('email@example.com');
 
 ## Package content
 
-### EmailAddress value object
+### Email address value
 
-Immutable email address value object that will be used most of the time.
+`EmailAddressInterface` - is the base interface for email address value objects.
+
+`EmailAddress` - immutable email address value object that will be used most of the time.
 
 ```php
 use Nordic\EmailAddress\EmailAddress;
@@ -38,9 +40,9 @@ try {
 }
 ```
 
-### NullEmailAddress value object
+### Null value object
 
-Null email address value object (null object design pattern).
+`NullEmailAddress` - null email address value object (null object design pattern).
 
 ```php
 use Nordic\EmailAddress\NullEmailAddress;
@@ -48,45 +50,9 @@ use Nordic\EmailAddress\NullEmailAddress;
 $emailAddress = new NullEmailAddress;
 ```
 
-### Assertion class
+### Exceptions
 
-The class `Assertion` can be used for checking some email and email address value object specific assertions. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
-
-Available methods:
-
-#### Assertion::email
-
-This method will fail in case if string value is not a valid email address.
-
-```php
-use Nordic\EmailAddress\Assertion;
-use Nordic\EmailAddress\InvalidEmailAddressException;
-
-try {
-    Assertion::email('email@example.com');
-} catch (InvalidEmailAddressException $e) {
-    // invalid email value detected
-}
-```
-
-#### Assertion::notNull
-
-This method will fail in case if email address value object is null email address object.
-
-```php
-use Nordic\EmailAddress\Assertion;
-use Nordic\EmailAddress\InvalidEmailAddressException;
-
-try {
-    Assertion::notNull($emailAddress);
-} catch (InvalidEmailAddressException $e) {
-    // $emailAddress is nullable
-}
-```
-
-### InvalidEmailAddressException
-
-This is a basic exception that you can use. The first argument is a string email address value.
+`InvalidEmailAddressException` - is a basic exception that you can use. The first argument is a string value.
 
 ```php
 use Nordic\EmailAddress\InvalidEmailAddressException;
@@ -102,17 +68,51 @@ try {
 }
 ```
 
-### EmailAddressInterface
+### Assertion class
 
-The basic interface for email address value objects.
+The class `Assertion` can be used for checking some email and email address value object specific assertions. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
 
-### EmailAddressProviderInterface / EmailAddressProviderTrait
+Available methods:
 
-Use this interface and trait when the object should only provide email address value object (see [EmailAddressProviderTest.php](tests/EmailAddressProviderTest.php) for examples).
+#### `Assertion::email`
 
-### EmailAddressAwareInterface / EmailAddressAwareTrait
+The method `Assertion::email` will fail in case if string value is not a valid email address.
 
-Use this interface when the object should aware about email address value object (see [EmailAddressAwareTest.php](tests/EmailAddressAwareTest.php) for examples).
+```php
+use Nordic\EmailAddress\Assertion;
+use Nordic\EmailAddress\InvalidEmailAddressException;
+
+try {
+    Assertion::email('email@example.com');
+} catch (InvalidEmailAddressException $e) {
+    // invalid email value detected
+}
+```
+
+#### `Assertion::notNull`
+
+The method `Assertion::notNull` will fail in case if email address value object is null email address object.
+
+```php
+use Nordic\EmailAddress\Assertion;
+use Nordic\EmailAddress\InvalidEmailAddressException;
+
+try {
+    Assertion::notNull($emailAddress);
+} catch (InvalidEmailAddressException $e) {
+    // $emailAddress is nullable
+}
+```
+
+### Email address utilities
+
+#### Provider
+
+Use interface `EmailAddressProviderInterface` and trait `EmailAddressProviderTrait` when the object should only provide email address value object (see [EmailAddressProviderTest.php](tests/EmailAddressProviderTest.php) for examples).
+
+### Aware
+
+Use interface `EmailAddressAwareInterface` and trait `EmailAddressAwareTrait` when the object should aware about email address value object (see [EmailAddressAwareTest.php](tests/EmailAddressAwareTest.php) for examples).
 
 ## Examples
 
