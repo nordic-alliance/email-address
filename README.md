@@ -23,7 +23,7 @@ $emailAddress = new EmailAddress('email@example.com');
 
 ## Package content
 
-### Email address value
+### Email address objects
 
 `EmailAddressInterface` - is the base interface for email address value objects.
 
@@ -35,14 +35,25 @@ use Nordic\EmailAddress\EmailAddress;
 $emailAddress = new EmailAddress('email@example.com');
 ```
 
-### Null value object
-
 `NullEmailAddress` - null email address value object (null object design pattern).
 
 ```php
 use Nordic\EmailAddress\NullEmailAddress;
 
 $emailAddress = new NullEmailAddress;
+```
+
+To compare two email address value objects we can use `equals` method:
+
+```php
+use Nordic\EmailAddress\EmailAddress;
+
+$emailAddress = new EmailAddress('email@example.com');
+$emailAddressSame = new EmailAddress('email@example.com');
+$emailAddressAnother = new EmailAddress('another@example.com');
+
+var_dump($emailAddress->equals($emailAddressSame)); // boolean true
+var_dump($emailAddress->equals($emailAddressAnother)); // boolean false
 ```
 
 ### Exceptions
