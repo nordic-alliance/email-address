@@ -3,7 +3,6 @@
 ![PHP version][ico-php-version]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 ## Install
@@ -165,7 +164,6 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/nordic-alliance/email-address.svg?style=flat-square
 
 [link-travis]: https://travis-ci.org/nordic-alliance/email-address
-[link-scrutinizer]: https://scrutinizer-ci.com/g/nordic-alliance/email-address/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/nordic-alliance/email-address
 [link-author]: https://github.com/DyaGa
 [link-contributors]: ../../contributors
