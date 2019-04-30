@@ -23,7 +23,7 @@ $ composer require nordic/email-address
  * Include assertion class
  * Include factory class
 
-## Basic classes
+## Basic classes and interfaces
 
 `EmailAddressInterface` - is the base interface for email address value objects.
 
@@ -50,8 +50,8 @@ $emailAddress = new EmailAddress('email@example.com');
 $emailAddressSame = new EmailAddress('email@example.com');
 $emailAddressAnother = new EmailAddress('another@example.com');
 
-var_dump($emailAddress->equals($emailAddressSame)); // boolean true
-var_dump($emailAddress->equals($emailAddressAnother)); // boolean false
+var_dump($emailAddress->equals($emailAddressSame)); // boolean(true)
+var_dump($emailAddress->equals($emailAddressAnother)); // boolean(false)
 ```
 
 ### Exceptions
@@ -87,7 +87,7 @@ $emailAddress = $factory->createEmailAddress('wrong_email'); // will throw Inval
 
 The class `Assertion` can be used for checking some email and email address value object specific assertions. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
 
-#### `Assertion::email`
+Assertion methods:
 
 The method `Assertion::email` will fail in case if string value is not a valid email address.
 
@@ -98,8 +98,6 @@ use Nordic\EmailAddress\InvalidEmailAddressException;
 $email = Assertion::email('email@example.com');
 $email = Assertion::email('wrong_email'); // will throw InvalidEmailAddressException
 ```
-
-#### `Assertion::notNull`
 
 The method `Assertion::notNull` will fail in case if email address value object is null email address object.
 
