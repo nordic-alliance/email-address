@@ -23,37 +23,25 @@ $ composer require nordic/email-address
  * Include assertion class
  * Include factory class
 
-## Usage
-
-```php
-use Nordic\EmailAddress\EmailAddress;
-
-$emailAddress = new EmailAddress('email@example.com');
-```
-
-## Package content
-
-### Email address objects
+## Basic classes
 
 `EmailAddressInterface` - is the base interface for email address value objects.
 
 `EmailAddress` - immutable email address value object that will be used most of the time.
 
-```php
-use Nordic\EmailAddress\EmailAddress;
-
-$emailAddress = new EmailAddress('email@example.com');
-```
-
 `NullEmailAddress` - null email address value object (null object design pattern).
 
+## Usage
+
 ```php
+use Nordic\EmailAddress\EmailAddress;
 use Nordic\EmailAddress\NullEmailAddress;
 
-$emailAddress = new NullEmailAddress;
+$emailAddress = new EmailAddress('email@example.com');
+$nullEmailAddress = new NullEmailAddress;
 ```
 
-To compare two email address value objects we can use `equals` method:
+For comparing two email address value objects we can use `equals` method:
 
 ```php
 use Nordic\EmailAddress\EmailAddress;
@@ -80,7 +68,7 @@ var_dump($e->getMessage()); // string(45) "Wrong email address value `wrong_emai
 var_dump($e->getEmailAddress()); // string(17) "wrong_email"
 ```
 
-### Email address factory
+### Factory pattern
 
 `EmailAddressFactoryInterface` - is the base interface for email address factory.
 
@@ -98,8 +86,6 @@ $emailAddress = $factory->createEmailAddress('wrong_email'); // will throw Inval
 ### Assertion class
 
 The class `Assertion` can be used for checking some email and email address value object specific assertions. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
-
-Available methods:
 
 #### `Assertion::email`
 
@@ -123,13 +109,13 @@ use Nordic\EmailAddress\Assertion;
 $emailAddress = Assertion::notNull($emailAddress);
 ```
 
-### Email address utilities
+### Additional utility classes
 
 #### Provider
 
 Use interface `EmailAddressProviderInterface` and trait `EmailAddressProviderTrait` when the object should only provide email address value object (see [EmailAddressProviderTest.php](tests/EmailAddressProviderTest.php) for examples).
 
-### Aware
+#### Aware
 
 Use interface `EmailAddressAwareInterface` and trait `EmailAddressAwareTrait` when the object should aware about email address value object (see [EmailAddressAwareTest.php](tests/EmailAddressAwareTest.php) for examples).
 
