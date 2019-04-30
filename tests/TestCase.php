@@ -33,4 +33,9 @@ abstract class TestCase extends PHPUnitFrameworkTestCase
     {
         return new NullEmailAddress;
     }
+
+    protected function assertInstanceOfNullEmailAddress($emailAddress): void
+    {
+        $this->assertInstanceOf(NullEmailAddress::class, $emailAddress);
+    }
 }
