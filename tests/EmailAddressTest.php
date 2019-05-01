@@ -37,4 +37,12 @@ final class EmailAddressTest extends TestCase
 
         $this->assertFalse($emailAddress->equals($emailAddressAnother));
     }
+
+    public function testEmailAddressEqualsToNull()
+    {
+        $emailAddress = $this->createValidEmailAddress();
+        $emailAddressAnother = $this->createNullEmailAddress();
+
+        $this->assertFalse($emailAddress->equals($emailAddressAnother));
+    }
 }

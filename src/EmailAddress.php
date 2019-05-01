@@ -27,7 +27,7 @@ class EmailAddress implements EmailAddressInterface
      */
     public function equals(EmailAddressInterface $emailAddress): bool
     {
-        return $this->emailAddress === $emailAddress->emailAddress;
+        return $emailAddress instanceof self && $emailAddress->emailAddress === $this->emailAddress;
     }
 
     /**
