@@ -3,6 +3,7 @@
 ![PHP version][ico-php-version]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 This package represents an immutable email address value object and additional utility classes.
@@ -158,6 +159,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [link-travis]: https://travis-ci.org/nordic-alliance/email-address
 [link-code-quality]: https://scrutinizer-ci.com/g/nordic-alliance/email-address
+[link-scrutinizer]: https://scrutinizer-ci.com/g/nordic-alliance/email-address/code-structure
 [link-author]: https://github.com/DyaGa
 [link-contributors]: ../../contributors
 
