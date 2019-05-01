@@ -25,6 +25,14 @@ class EmailAddress implements EmailAddressInterface
     /**
      * @inheritDoc
      */
+    public function equals(EmailAddressInterface $emailAddress): bool
+    {
+        return $this->emailAddress === $emailAddress->emailAddress;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function __toString(): string
     {
         return $this->emailAddress;

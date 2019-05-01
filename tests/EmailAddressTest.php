@@ -21,4 +21,20 @@ final class EmailAddressTest extends TestCase
 
         $emailAddress = $this->createEmailAddress(self::INVALID_EMAIL);
     }
+
+    public function testEmailAddressEquals()
+    {
+        $emailAddress = $this->createValidEmailAddress();
+        $emailAddressAnother = $this->createValidEmailAddress();
+
+        $this->assertTrue($emailAddress->equals($emailAddressAnother));
+    }
+
+    public function testEmailAddressNotEquals()
+    {
+        $emailAddress = $this->createValidEmailAddress();
+        $emailAddressAnother = $this->createEmailAddress('another@example.com');
+
+        $this->assertFalse($emailAddress->equals($emailAddressAnother));
+    }
 }
