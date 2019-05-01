@@ -39,14 +39,8 @@ use Nordic\EmailAddress\NullEmailAddress;
 
 $emailAddress = new EmailAddress('email@example.com');
 $nullEmailAddress = new NullEmailAddress;
-```
 
-For comparing two email address value objects we can use `equals` method:
-
-```php
-use Nordic\EmailAddress\EmailAddress;
-
-$emailAddress = new EmailAddress('email@example.com');
+// Compare two email addresses
 $emailAddressSame = new EmailAddress('email@example.com');
 $emailAddressAnother = new EmailAddress('another@example.com');
 
@@ -61,10 +55,7 @@ var_dump($emailAddress->equals($emailAddressAnother)); // boolean(false)
 ```php
 use Nordic\EmailAddress\InvalidEmailAddressException;
 
-$email = 'wrong_email';
-$e = new InvalidEmailAddressException($email, sprintf('Wrong email address value `%s`', $email));
-
-var_dump($e->getMessage()); // string(45) "Wrong email address value `wrong_email`"
+$e = new InvalidEmailAddressException('wrong_email', 'Wrong email address');
 var_dump($e->getEmailAddress()); // string(17) "wrong_email"
 ```
 
@@ -83,46 +74,42 @@ $nullEmailAddress = $factory->createEmailAddress();
 $emailAddress = $factory->createEmailAddress('wrong_email'); // will throw InvalidEmailAddressException
 ```
 
-### Assertion class
+### Assertion
 
-The class `Assertion` can be used for checking some email and email address value object specific assertions. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
+The class `Assertion` can be used for checking if string value is an email address string or check if email address value object is not null object. All methods will throw `InvalidEmailAddressException` if assertion will fails. You can always set a custom exception message as the second method argument.
 
-Assertion methods:
+Available methods:
 
-The method `Assertion::email` will fail in case if string value is not a valid email address.
+ * `Assertion::email` - will fail in case if string value is not a valid email address.
+ * `Assertion::notNull` - will fail in case if email address value object is null email address object.
 
 ```php
 use Nordic\EmailAddress\Assertion;
-use Nordic\EmailAddress\InvalidEmailAddressException;
 
 $email = Assertion::email('email@example.com');
 $email = Assertion::email('wrong_email'); // will throw InvalidEmailAddressException
-```
-
-The method `Assertion::notNull` will fail in case if email address value object is null email address object.
-
-```php
-use Nordic\EmailAddress\Assertion;
 
 $emailAddress = Assertion::notNull($emailAddress);
+// will throw InvalidEmailAddressException if $emailAddress is instance of NullEmailAddress
 ```
 
-### Additional utility classes
+### Additional helpers
 
-#### Provider
+#### Provider interface and trait
 
 Use interface `EmailAddressProviderInterface` and trait `EmailAddressProviderTrait` when the object should only provide email address value object (see [EmailAddressProviderTest.php](tests/EmailAddressProviderTest.php) for examples).
 
-#### Aware
+#### Aware intrerface and trait
 
 Use interface `EmailAddressAwareInterface` and trait `EmailAddressAwareTrait` when the object should aware about email address value object (see [EmailAddressAwareTest.php](tests/EmailAddressAwareTest.php) for examples).
 
-## Examples
+## Example
 
 ```php
 use Nordic\EmailAddress\Assertion;
 use Nordic\EmailAddress\EmailAddress;
 use Nordic\EmailAddress\EmailAddressInterface;
+use Nordic\EmailAddress\EmailAddressFactory;
 use Nordic\EmailAddress\InvalidEmailAddressException;
 use Nordic\EmailAddress\EmailAddressProviderInterface;
 use Nordic\EmailAddress\EmailAddressProviderTrait;
@@ -137,12 +124,15 @@ class MyClass implements EmailAddressProviderInterface
     }
 }
 
+$factory = new EmailAddressFactory;
+
 try {
-    $myClass = new MyClass(new EmailAddress('email@example.com'));
-    $emailAddress = $myClass->getEmailAddress();
+    $myClass = new MyClass($factory->createEmailAddress('email@example.com'));
 } catch (InvalidEmailAddressException $e) {
     // do something
 }
+
+$emailAddress = $myClass->getEmailAddress();
 ```
 
 ## Testing
