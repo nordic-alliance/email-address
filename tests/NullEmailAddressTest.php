@@ -14,4 +14,20 @@ final class NullEmailAddressTest extends TestCase
 
         $this->assertSame('', (string)$emailAddress);
     }
+
+    public function testNullEmailAddressEquals()
+    {
+        $emailAddress = $this->createNullEmailAddress();
+        $emailAddressAnother = $this->createNullEmailAddress();
+
+        $this->assertTrue($emailAddress->equals($emailAddressAnother));
+    }
+
+    public function testNullEmailAddressNotEquals()
+    {
+        $emailAddress = $this->createNullEmailAddress();
+        $emailAddressAnother = $this->createValidEmailAddress();
+
+        $this->assertFalse($emailAddress->equals($emailAddressAnother));
+    }
 }
