@@ -20,7 +20,7 @@ $ composer require nordic/email-address
 
  * Immutable value object
  * No dependencies
- * Include null email address value object (see [Null object pattern](link-null-object-pattern))
+ * Include null email address value object (see [Null object pattern][link-null-object-pattern])
  * Include assertion class
  * Include factory class
 
